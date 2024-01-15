@@ -5,19 +5,7 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 // 静态路由
 export const constantRoutes = [
   {
-    path: '/redirect',
-    component: () => import('../layout/index.vue'),
-    hidden: true,
-    children: [
-      {
-        path: '/redirect/:path(.*)',
-        component: () => import('../views/redirect/index.vue')
-      }
-    ]
-  },
-  {
     path: '/',
-    component: () => import('../layout/index.vue'),
     hidden: false, // 是否隐藏
     redirect: '/Home',
     alwaysShow: false, // 是否显示根节点路由

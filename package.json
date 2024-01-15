@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "vite"
   },
   "author": "",
   "license": "MIT",
@@ -15,6 +15,7 @@
     "dayjs": "^1.11.7",
     "element-plus": "^2.5.1",
     "highlight.js": "^11.9.0",
+    "js-cookie": "^3.0.5",
     "katex": "^0.16.9",
     "marked": "^11.1.1",
     "marked-katex-extension": "^5.0.0",
