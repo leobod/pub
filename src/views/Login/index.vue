@@ -44,7 +44,7 @@ const onSubmit = () => {
 
 const onGoto = () => {
   $router.push({
-    path: '/'
+    path: '/Home'
   })
 }
 </script>

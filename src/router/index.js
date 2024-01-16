@@ -7,7 +7,7 @@ export const constantRoutes = [
   {
     path: '/',
     hidden: false, // 是否隐藏
-    redirect: '/Home',
+    redirect: '/Login',
     alwaysShow: false, // 是否显示根节点路由
     meta: {
       title: i18n.global.t('首页'),
@@ -28,7 +28,7 @@ export const constantRoutes = [
     ]
   },
   {
-    path: '/login',
+    path: '/Login',
     component: () => import('../views/Login/index.vue'),
     hidden: true
   }
