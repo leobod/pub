@@ -7,3 +7,11 @@ export function list (data) {
     data
   })
 }
+
+export function save (data) {
+  return service({
+    url: '/user/save',
+    method: 'post',
+    data
+  })
+}

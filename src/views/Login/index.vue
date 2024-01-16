@@ -36,7 +36,7 @@ const onSubmit = () => {
     setKey(code)
     setVal(token)
     $router.push({
-      path: '/'
+      path: '/Home'
     })
     console.log(res)
   })
