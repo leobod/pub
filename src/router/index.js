@@ -12,7 +12,7 @@ export const constantRoutes = [
   {
     path: '/',
     hidden: false, // 是否隐藏
-    redirect: '/Login',
+    redirect: '/Home',
     alwaysShow: false, // 是否显示根节点路由
     meta: {
       title: i18n.global.t('首页'),
