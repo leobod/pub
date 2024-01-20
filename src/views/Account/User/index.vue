@@ -1,21 +1,14 @@
 <template>
   <div class="page-container">
     <div class="page-content" v-loading="table.loading">
-      <div style="margin-bottom: 15px;">
-        <AButton type="primary" @click="onAdd">新建</AButton>
-      </div>
-      <ATable :dataSource="table.data" :columns="table.columns" border stripe>
-        <template #bodyCell="{ column }">
-          <template v-if="column.dataIndex === 'action'">
-            <AButton type="text">
-              编辑
-            </AButton>
-            <AButton type="text">
-              删除
-            </AButton>
-          </template>
-        </template>
-      </ATable>
+      <el-button @click="onAdd">新建</el-button>
+      <el-table :data="table.data" border stripe>
+        <el-table-column label="账号" prop="account" />
+        <el-table-column label="名称" prop="name" />
+        <el-table-column label="状态" prop="stateName" />
+        <el-table-column label="更新时间" prop="updateAt" />
+        <el-table-column label="创建时间" prop="createAt" />
+      </el-table>
     </div>
 
     <UserEdit
