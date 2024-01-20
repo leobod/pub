@@ -4,22 +4,22 @@
       <div class="Login-FormTitle">
         数据综合管理系统
       </div>
-      <el-form ref="formRef" :model="form" :rules="formRules" label-position="top" class="Login-Form">
-        <el-form-item label="账户" prop="account">
-          <el-input v-model="form.account" />
-        </el-form-item>
-        <el-form-item label="密码" prop="passwd">
-          <el-input type="password" v-model="form.passwd" />
-        </el-form-item>
-      </el-form>
+      <AForm ref="formRef" :model="form" :rules="formRules" label-position="top" class="Login-Form">
+        <AFormItem label="账户" name="account">
+          <AInput v-model:value="form.account" />
+        </AFormItem>
+        <AFormItem label="密码" name="passwd">
+          <AInput type="password" v-model:value="form.passwd" />
+        </AFormItem>
+      </AForm>
       <div class="Login-BtnGroup">
-        <el-button
-            type="primary"
-            class="Login-BtnLogin"
-            @click="onLogin"
+        <AButton
+          type="primary"
+          class="Login-BtnLogin"
+          @click="onLogin"
         >
           登录
-        </el-button>
+        </AButton>
       </div>
     </div>
   </div>
@@ -30,7 +30,7 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { login } from '@/api/login'
 import { setKey, setVal } from '@/utils/auth'
-import { ElMessage } from 'element-plus'
+import { message } from 'ant-design-vue'
 
 const $router = useRouter()
 
@@ -41,7 +41,7 @@ const form = ref({
 })
 const formRules = ref({
   account: [
-    { required: true, message: '请输入账号', tirgger: 'blur' }
+    { required: true, message: '请输入账号', trigger: 'blur' }
   ],
   passwd: [
     { required: true, message: '请输入密码', trigger: 'blur' }
@@ -49,8 +49,9 @@ const formRules = ref({
 })
 
 const onLogin = () => {
-  formRef.value.validate(valid => {
-    if (valid) {
+  formRef.value
+    .validate()
+    .then(() => {
       const finalParams = Object.assign({}, form.value)
       finalParams.passwd = btoa(finalParams.passwd)
       login(finalParams).then((res) => {
@@ -61,10 +62,10 @@ const onLogin = () => {
           path: '/Home'
         })
       })
-    } else {
-      ElMessage({ type: 'warning', message: '请检查输入' })
-    }
-  })
+    })
+    .catch(() => {
+      message.warning('请检查输入')
+    })
 }
 
 </script>

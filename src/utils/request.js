@@ -1,5 +1,5 @@
 import axios from 'axios'
-import { ElMessage } from 'element-plus'
+import { message } from 'ant-design-vue'
 import { getKey, getVal } from '@/utils/auth'
 
 // create an axios instance
@@ -48,11 +48,7 @@ service.interceptors.response.use(
 
     // if the custom code is not 20000, it is judged as an error.
     if (res.errCode !== 0) {
-      ElMessage({
-        message: res.msgZh || res.msg || 'Error',
-        type: 'error',
-        duration: 5 * 1000
-      })
+      message(res.msgZh || res.msg || 'Error', 5 * 1000)
       return Promise.reject(new Error(res.msgZh || res.msg || 'Error'))
     } else {
       return res
@@ -60,11 +56,7 @@ service.interceptors.response.use(
   },
   (error) => {
     console.log('err' + error) // for debug
-    ElMessage({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
-    })
+    message.error(error.message, 5 * 1000)
     return Promise.reject(error)
   }
 )

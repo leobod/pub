@@ -2,23 +2,20 @@
   <div class="page-container">
     <div class="page-content" v-loading="table.loading">
       <div style="margin-bottom: 15px;">
-        <el-button type="primary" @click="onAdd">新建</el-button>
+        <AButton type="primary" @click="onAdd">新建</AButton>
       </div>
-      <el-table :data="table.data" border stripe>
-        <el-table-column label="账号" prop="account" />
-        <el-table-column label="名称" prop="name" />
-        <el-table-column label="状态" prop="stateName" />
-        <el-table-column label="更新时间" prop="updateAt" />
-        <el-table-column label="创建时间" prop="createAt" />
-        <el-table-column label="操作" prop="action">
-          <el-button type="primary" text>
-            编辑
-          </el-button>
-          <el-button type="danger" text>
-            删除
-          </el-button>
-        </el-table-column>
-      </el-table>
+      <ATable :dataSource="table.data" :columns="table.columns" border stripe>
+        <template #bodyCell="{ column }">
+          <template v-if="column.dataIndex === 'action'">
+            <AButton type="text">
+              编辑
+            </AButton>
+            <AButton type="text">
+              删除
+            </AButton>
+          </template>
+        </template>
+      </ATable>
     </div>
 
     <UserEdit
@@ -34,7 +31,15 @@ import { list } from '@/api/user'
 import UserEdit from '@/views/Account/User/dialog/UserEdit.vue'
 const table = reactive({
   loading: false,
-  data: []
+  data: [],
+  columns: [
+    { title: '账号', dataIndex: 'account' },
+    { title: '名称', dataIndex: 'name' },
+    { title: '状态', dataIndex: 'stateName' },
+    { title: '更新时间', dataIndex: 'updateAt' },
+    { title: '创建时间', dataIndex: 'createAt' },
+    { title: '操作', dataIndex: 'action' }
+  ]
 })
 const dialog = reactive({
   userEdit: {
