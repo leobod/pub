@@ -1,13 +1,28 @@
 <template>
-  <el-dialog v-model="dialog.show" title="用户管理" @close="onClose">
-    <div>
+  <el-dialog
+    v-model="dialog.show"
+    title="用户管理"
+    width="600px"
+    class="UserEditDialog"
+    @close="onClose"
+  >
+    <div class="UserEdit">
       <div class="UserEdit-FormContainer">
-        <el-form class="UserEdit-Form" :model="form">
+        <el-form
+          class="UserEdit-Form"
+          :model="form"
+          :rules="formRules"
+          label-width="100px"
+        >
           <el-form-item label="账号" prop="account">
             <el-input v-model="form.account"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="passwd">
-            <el-input v-model="form.passwd"></el-input>
+            <el-input
+              v-model="form.passwd"
+              type="password"
+              show-password
+            ></el-input>
           </el-form-item>
           <el-form-item label="名称" prop="name">
             <el-input v-model="form.name"></el-input>
@@ -17,8 +32,9 @@
           </el-form-item>
         </el-form>
       </div>
-      <div>
-        <el-button @click="onSubmit">提交</el-button>
+      <div class="UserEdit-BtnGroup">
+        <el-button @click="onCancel">取消</el-button>
+        <el-button type="primary" @click="onSubmit">确认</el-button>
       </div>
     </div>
   </el-dialog>
@@ -34,9 +50,18 @@ const dialog = ref({
 })
 const form = ref({
   code: '',
-  account: ''
+  account: '',
+  passwd: '',
+  name: '',
+  description: ''
 })
-
+const formRules = ref({
+  account: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+  passwd: [{ required: true, message: '请输入密码', trigger: 'blur' }]
+})
+const onCancel = () => {
+  emits('close', null)
+}
 const onClose = () => {
   emits('close', null)
 }
@@ -48,3 +73,12 @@ const onSubmit = () => {
   })
 }
 </script>
+
+<style lang="scss" scoped>
+.UserEdit {
+  .UserEdit-BtnGroup {
+    padding: 10px 0;
+    text-align: right;
+  }
+}
+</style>

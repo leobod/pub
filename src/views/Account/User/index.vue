@@ -1,13 +1,23 @@
 <template>
   <div class="page-container">
     <div class="page-content" v-loading="table.loading">
-      <el-button @click="onAdd">新建</el-button>
+      <div style="margin-bottom: 15px;">
+        <el-button type="primary" @click="onAdd">新建</el-button>
+      </div>
       <el-table :data="table.data" border stripe>
         <el-table-column label="账号" prop="account" />
         <el-table-column label="名称" prop="name" />
         <el-table-column label="状态" prop="stateName" />
         <el-table-column label="更新时间" prop="updateAt" />
         <el-table-column label="创建时间" prop="createAt" />
+        <el-table-column label="操作" prop="action">
+          <el-button type="primary" text>
+            编辑
+          </el-button>
+          <el-button type="danger" text>
+            删除
+          </el-button>
+        </el-table-column>
       </el-table>
     </div>
 

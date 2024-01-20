@@ -7,7 +7,7 @@ const service = axios.create({
   baseURL: import.meta.env.MODE === 'production'
     ? 'http://lz.leobod.cn/api'
     : import.meta.env.VITE_BASE_API,
-  timeout: 5000 // request timeout
+  timeout: 10000 // request timeout
 })
 
 // request interceptor
